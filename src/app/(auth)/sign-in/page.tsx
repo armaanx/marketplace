@@ -44,6 +44,7 @@ const Page = () => {
         mutate({ email, password });
   };
   
+
     return (
         <>
         <div className='container relative flex pt-20 flex-col items-center justify-center lg:px-0'>
@@ -51,7 +52,7 @@ const Page = () => {
             <div className='flex flex-col items-center space-y-2 text-center'>
               <Icons.logo className='h-20 w-20' />
               <h1 className='text-2xl font-semibold tracking-tight'>
-                Create an account
+                Sign in
               </h1>
   
               <Link
@@ -59,8 +60,8 @@ const Page = () => {
                   variant: 'link',
                   className: 'gap-1.5',
                 })}
-                href='/sign-in'>
-                Already have an account? Sign-in
+                href='/sign-up'>
+                New here? Sign up
                 <ArrowRight className='h-4 w-4' />
               </Link>
             </div>
@@ -103,9 +104,24 @@ const Page = () => {
                     )}
                   </div>
   
-                  <Button disabled={isLoading}>{!isLoading ? 'Sign Up' :<Loader2 className="h-6 w-6 animate-spin" />}</Button>
+                  <Button disabled={isLoading}>{!isLoading ? 'Sign In' :<Loader2 className="h-6 w-6 animate-spin" />}</Button>
                 </div>
-              </form>
+                </form>
+            <div className='relative'>
+              <div
+                aria-hidden='true'
+                className='absolute inset-0 flex items-center'>
+                <span className='w-full border-t' />
+              </div>
+              <div className='relative flex justify-center text-xs uppercase'>
+                <span className='bg-background px-2 text-muted-foreground'>
+                  or
+                </span>
+              </div>
+            </div>
+              
+                        
+
             </div>
           </div>
         </div>
