@@ -17,6 +17,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 const Page = () => {
 
   const searchParams = useSearchParams();
+  const router = useRouter();
   const isSeller = searchParams.get('as') === 'seller';
   const origin = searchParams.get('origin');
 
@@ -27,16 +28,16 @@ const Page = () => {
     router.replace('/sign-in', undefined);
   }
 
-    const router = useRouter();
     const { register, handleSubmit, formState: { errors } } = useForm<TAuthCredentialsValidator>({
         resolver: zodResolver(AuthCredentialsValidator),
     });
 
   const { mutate: singIn, isLoading } = trpc.auth.signIn.useMutation({
-    onSuccess: () => {
+    onSuccess: async() => {
       toast.success("Signed in successfully.");
-      router.refresh();
+      //router.refresh();
       if (origin) {
+        console.log(origin);
         router.push(`/${origin}`);
         return;
       }
@@ -45,6 +46,7 @@ const Page = () => {
         return;
       }
       router.push('/');
+      router.refresh();
     },
     onError: (err) => {
       if (err.data?.code === 'UNAUTHORIZED') {
