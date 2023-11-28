@@ -37,7 +37,6 @@ const Page = () => {
       toast.success("Signed in successfully.");
       //router.refresh();
       if (origin) {
-        console.log(origin);
         router.push(`/${origin}`);
         return;
       }
